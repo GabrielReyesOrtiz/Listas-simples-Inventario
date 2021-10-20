@@ -71,7 +71,7 @@ class App {
   };
 
   _addProductPos = () => {
-    let product = Product.readProduct();
+    let product = this._readProduct();
     let inpPos = document.querySelector("#pos");
     let posInto = inpPos.value;
 

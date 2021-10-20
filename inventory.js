@@ -19,11 +19,11 @@ export default class Inventory {
 
   insertar(product, pos) {
     let aux = this.inicio;
-    let temp = null;
+
     if (pos == 1) {
-      temp = this.inicio;
+      product.setSiguiente(aux);
       this.inicio = product;
-      this.inicio.setSiguiente(temp);
+      return true;
     }
 
     for (let i = 2; i < pos; i++) {
