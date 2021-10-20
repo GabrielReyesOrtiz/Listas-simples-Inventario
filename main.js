@@ -84,7 +84,7 @@ class App {
 
     if (added === false) {
       document.getElementById("elementAddPos").innerHTML =
-        "Error, Producto ya registrado";
+        "Error, Esa posición no existe";
       return;
     }
     if (added === true) {

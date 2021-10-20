@@ -27,7 +27,11 @@ export default class Inventory {
     }
 
     for (let i = 2; i < pos; i++) {
-      aux = aux.getSiguiente();
+      if (aux.getSiguiente() != null) {
+        aux = aux.getSiguiente();
+      } else {
+        return false;
+      }
     }
 
     product.setSiguiente(aux.getSiguiente());
