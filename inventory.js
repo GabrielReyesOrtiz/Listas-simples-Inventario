@@ -26,11 +26,13 @@ export default class Inventory {
       this.inicio.setSiguiente(temp);
     }
 
-    for (let i = 2; i <= pos; i++) {
+    for (let i = 2; i < pos; i++) {
       aux = aux.getSiguiente();
     }
 
-    product.setSiguiente(aux);
+    product.setSiguiente(aux.getSiguiente());
+    aux.setSiguiente(product);
+    return true;
   }
 
   buscar(idProduct) {
