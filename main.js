@@ -15,6 +15,9 @@ class App {
 
     let btnList = document.querySelector("#btnList");
     btnList.addEventListener("click", this._list);
+
+    let btnAddPos = document.querySelector("#btnAddPos");
+    btnAddPos.addEventListener("click", this._addProductPos);
   }
 
   _readProduct() {
@@ -65,8 +68,32 @@ class App {
         "Se agrego correctamente nuevo producto";
       return;
     }
-    document.getElementById("elementAdd").innerHTML =
-      "Error, solo se pueden agregar hasta 20 productos";
+  };
+
+  _addProductPos = () => {
+    let product = Product.readProduct();
+    let inpPos = document.querySelector("#pos");
+    let posInto = inpPos.value;
+
+    if (!product) {
+      document.getElementById("elementAddPos").innerHTML =
+        "Error todos los elementos son requeridos";
+      return;
+    }
+    let added = this._inventory.insertar(product, posInto);
+
+    if (added === false) {
+      document.getElementById("elementAddPos").innerHTML =
+        "Error, Producto ya registrado";
+      return;
+    }
+    if (added === true) {
+      document.getElementById("elementAddPos").innerHTML =
+        "Se agrego correctamente nuevo producto";
+      return;
+    }
+
+    Swal.fire("Error", "Esa posición no existe", "error");
   };
 
   _delete = () => {
@@ -74,7 +101,7 @@ class App {
     let idDelete = inpIdDelete.value;
 
     document.getElementById("elementDelete").innerHTML =
-      this._inventory.buscar(idProduct);
+      this._inventory.eliminar(idDelete);
   };
 
   _search = () => {

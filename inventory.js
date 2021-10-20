@@ -17,6 +17,22 @@ export default class Inventory {
     }
   }
 
+  insertar(product, pos) {
+    let aux = this.inicio;
+    let temp = null;
+    if (pos == 1) {
+      temp = this.inicio;
+      this.inicio = product;
+      this.inicio.setSiguiente(temp);
+    }
+
+    for (let i = 2; i <= pos; i++) {
+      aux = aux.getSiguiente();
+    }
+
+    product.setSiguiente(aux);
+  }
+
   buscar(idProduct) {
     let product = "El producto no existe";
     let aux = this.inicio;
@@ -30,24 +46,28 @@ export default class Inventory {
     return product;
   }
 
-  eliminar(nombre) {
+  eliminar(idDelete) {
+    let product = "El producto no existe";
     let elim = null;
-    if (nombre == this.inicio.nombre) {
+    if (idDelete == this.inicio.getId()) {
       elim = this.inicio;
-      this.inicio = this.inicio.siguiente;
-      elim.siguiente = null;
-      return elim;
+      this.inicio = this.inicio.getSiguiente();
+      elim.setSiguiente(null);
+      product = `El elemento eliminado es  ID: ${elim.getId()}  Nombre: ${elim.getName()} Cantidad: ${elim.getQuantity()}  Costo: ${elim.getCost()} <br>`;
+      return product;
     }
     let temp = this.inicio;
-    while (temp.siguiente != null) {
-      if (temp.siguiente.nombre == nombre) {
-        elim = temp.siguiente;
-        temp.siguiente = temp.siguiente.siguiente;
-        elim.siguiente = null;
-        return elim;
-      } else temp = temp.siguiente;
+    while (temp.getSiguiente() != null) {
+      if (temp.getSiguiente().getId() == idDelete) {
+        elim = temp.getSiguiente();
+        temp.setSiguiente(temp.getSiguiente().getSiguiente());
+        elim.setSiguiente(null);
+        product = `El elemento eliminado es  ID: ${elim.getId()}  Nombre: ${elim.getName()} Cantidad: ${elim.getQuantity()}  Costo: ${elim.getCost()} <br>`;
+        return product;
+      }
+      temp = temp.getSiguiente();
     }
-    return elim;
+    return product;
   }
 
   listar() {
@@ -58,11 +78,11 @@ export default class Inventory {
       return "No se han agregado Productos";
     } else {
       while (aux.getSiguiente() != null) {
-        lista = ` ${lista}  ${num} ID: ${aux.getId()}  Nombre: ${aux.getName()} Cantidad: ${aux.getQuantity()}  Costo: ${aux.getCost()} <br>`;
+        lista = ` ${lista}  ${num}  ---->  ID: ${aux.getId()}  Nombre: ${aux.getName()} Cantidad: ${aux.getQuantity()}  Costo: ${aux.getCost()} <br>`;
         aux = aux.getSiguiente();
         num++;
       }
-      lista = ` ${lista}  ${num} ID: ${aux.getId()}  Nombre: ${aux.getName()} Cantidad: ${aux.getQuantity()}  Costo: ${aux.getCost()} <br>`;
+      lista = ` ${lista}  ${num} ----> ID: ${aux.getId()}  Nombre: ${aux.getName()} Cantidad: ${aux.getQuantity()}  Costo: ${aux.getCost()} <br>`;
     }
     return lista;
   }
