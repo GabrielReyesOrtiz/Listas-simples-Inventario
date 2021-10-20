@@ -15,9 +15,6 @@ class App {
 
     let btnList = document.querySelector("#btnList");
     btnList.addEventListener("click", this._list);
-
-    let btnListI = document.querySelector("#btnListI");
-    btnListI.addEventListener("click", this._listReverse);
   }
 
   _readProduct() {
@@ -76,43 +73,20 @@ class App {
     let inpIdDelete = document.querySelector("#idDelete");
     let idDelete = inpIdDelete.value;
 
-    let element2 = document.getElementById("elementDelete");
-    let del = this._inventory.delete(idDelete, element2);
-
-    if (del === false) {
-      document.getElementById("elementDelete").innerHTML =
-        "Null ---> El producto no existe ";
-      return;
-    }
+    document.getElementById("elementDelete").innerHTML =
+      this._inventory.buscar(idProduct);
   };
 
   _search = () => {
-    let inpIdFind = document.querySelector("#idFind");
-    let idFind = inpIdFind.value;
+    let inpIdProduct = document.querySelector("#idProduct");
+    let idProduct = inpIdProduct.value;
 
-    let element = document.getElementById("elementFind");
-
-    let find = this._inventory.searchProduct(idFind, element);
-
-    if (find === false) {
-      document.getElementById("elementFind").innerHTML =
-        "NUll ----> El producto no existe ";
-      return;
-    }
+    document.getElementById("productFind").innerHTML =
+      this._inventory.buscar(idProduct);
   };
 
   _list = () => {
-    let table = document.querySelector("#table");
-    document.getElementById("table").innerHTML =
-      "<table><tr><td><b>Id de Producto</b></td><td><b>Nombre</b></td><td><b>Cantidad</b></td><td><b>Costo por Unidad</b></td><td><b>Valor de Mercancía</b></td></tr></table>";
-    this._inventory.list(table);
-  };
-  _listReverse = () => {
-    let table2 = document.querySelector("#table2");
-    document.getElementById("table2").innerHTML =
-      "<table><tr><td><b>Id de Producto</b></td><td><b>Nombre</b></td><td><b>Cantidad</b></td><td><b>Costo por Unidad</b></td><td><b>Valor de Mercancía</b></td></tr></table>";
-    this._inventory.listReverse(table2);
+    document.getElementById("lista").innerHTML = this._inventory.listar();
   };
 }
-
 new App();
