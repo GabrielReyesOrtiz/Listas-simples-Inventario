@@ -38,7 +38,18 @@ export default class Inventory {
     aux.setSiguiente(product);
     return true;
   }
-
+  _buscar() {
+    let product = "El producto no existe";
+    let aux = this.inicio;
+    while (aux != null) {
+      if (aux.getId() == idProduct) {
+        product = ` ID: ${aux.getId()}  Nombre: ${aux.getName()} Cantidad: ${aux.getQuantity()}  Costo: ${aux.getCost()} <br>`;
+        return product;
+      }
+      aux = aux.getSiguiente();
+    }
+    return product;
+  }
   buscar(idProduct) {
     let product = "El producto no existe";
     let aux = this.inicio;
@@ -84,11 +95,11 @@ export default class Inventory {
       return "No se han agregado Productos";
     } else {
       while (aux.getSiguiente() != null) {
-        lista = ` ${lista}  ${num}  ---->  ID: ${aux.getId()}  Nombre: ${aux.getName()} Cantidad: ${aux.getQuantity()}  Costo: ${aux.getCost()} <br>`;
+        lista = ` ${lista}  ${num}  ---->  ID: ${aux.getId()}  Nombre:  ${aux.getName()} Cantidad:  ${aux.getQuantity()}  Costo: $  ${aux.getCost()} Total: $ ${aux.getTotal()} <br>`;
         aux = aux.getSiguiente();
         num++;
       }
-      lista = ` ${lista}  ${num} ----> ID: ${aux.getId()}  Nombre: ${aux.getName()} Cantidad: ${aux.getQuantity()}  Costo: ${aux.getCost()} <br>`;
+      lista = ` ${lista}  ${num} ----> ID: ${aux.getId()}  Nombre: ${aux.getName()} Cantidad: ${aux.getQuantity()}  Costo: ${aux.getCost()} Total: $ ${aux.getTotal()} <br>`;
     }
     return lista;
   }
