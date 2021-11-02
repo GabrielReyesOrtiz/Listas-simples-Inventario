@@ -38,7 +38,7 @@ export default class Inventory {
     aux.setSiguiente(product);
     return true;
   }
-  _buscar() {
+  /* _buscar() {
     let product = "El producto no existe";
     let aux = this.inicio;
     while (aux != null) {
@@ -49,7 +49,7 @@ export default class Inventory {
       aux = aux.getSiguiente();
     }
     return product;
-  }
+  }*/
   buscar(idProduct) {
     let product = "El producto no existe";
     let aux = this.inicio;

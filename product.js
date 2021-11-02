@@ -48,10 +48,10 @@ export default class Product {
   }
 
   getSiguiente() {
-    return this.siguiente;
+    return this._siguiente;
   }
 
   setSiguiente(siguiente) {
-    this.siguiente = siguiente;
+    this._siguiente = siguiente;
   }
 }
