@@ -38,18 +38,7 @@ export default class Inventory {
     aux.setSiguiente(product);
     return true;
   }
-  /* _buscar() {
-    let product = "El producto no existe";
-    let aux = this.inicio;
-    while (aux != null) {
-      if (aux.getId() == idProduct) {
-        product = ` ID: ${aux.getId()}  Nombre: ${aux.getName()} Cantidad: ${aux.getQuantity()}  Costo: ${aux.getCost()} <br>`;
-        return product;
-      }
-      aux = aux.getSiguiente();
-    }
-    return product;
-  }*/
+
   buscar(idProduct) {
     let product = "El producto no existe";
     let aux = this.inicio;
